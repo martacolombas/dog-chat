@@ -29,14 +29,45 @@ body {
   display: flex;
   height: 100%;
   /* justify-content indicates where the children are going to be justified inside this parent 
-  -- justify-content is an attr inside a parent html text-align: 
+  -- justify-content is an attr inside a parent html
   it affects the main axis indicated in flex-direction*/
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
 .ChatContent {
   background-color: #f8f9fa;
   width: 95%;
-  height: 65%;
+  height: 75%;
   }
+
+.MessageCreator {
+  width: 95%;
+  height: 10%;
+  
+}
+
+.FormMessage {
+  display: flex;
+  flex-direction: row;
+  height:93%;
+  align-items: center;
+}
+
+.Message {
+  resize:none;
+  width:100%;
+  height:100%;
+  margin-right: 8px;
+}
+
+.DogButton {
+  background-color: white;
+  border-color: black;
+  border-radius: 50%;
+}
+
+.DogPaw{
+  width:50px;
+  height:50px;
+}
