@@ -52,6 +52,7 @@ body {
   align-items: center;
   padding: 16px;
   border-radius: 5px;
+  overflow: scroll;
 }
 
 .MessageCreator {
@@ -103,13 +104,14 @@ body {
 }
 
 .ChatBubble {
-  background-color: rgb(218, 218, 248);
+  background-color: #d4f7cd;
   width: 100%;
   padding: 8px;
   display: flex;
   flex-direction: column;
   padding: 8px;
   border-radius: 10px;
+  margin-top: 8px;
 }
 
 .UserName {

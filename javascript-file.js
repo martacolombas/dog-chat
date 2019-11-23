@@ -11,35 +11,60 @@ const messages = [
 
 let userName = "Bruce";
 let autoName = "Cynthia";
-let messagesIndex = 0;
-const datetime = currentDatetime();
+let datetime = currentDatetime();
+let colorBubbleAuto = "rgb(218, 218, 248)";
 
 console.log(datetime);
 
-// const autoMessages = () =>{
-//     (for let i = 0; i)
-// }
-
-function sendAutoMessage(username, messageText) {
-  let newChatBubble = $("<div>").addClass("ChatBubble");
+function sendMessage(username, messageText, colorbubble) {
+  let newMessageBubble = $("<div>")
+    .addClass("ChatBubble")
+    .css("background-color", colorbubble);
 
   $("<span>")
     .addClass("UserName")
     .text(username)
-    .appendTo(newChatBubble);
+    .appendTo(newMessageBubble);
   $("<span>")
     .addClass("TextMessage")
     .text(messageText)
-    .appendTo(newChatBubble);
+    .appendTo(newMessageBubble);
   $("<span>")
     .addClass("datetime")
     .text(datetime)
-    .appendTo(newChatBubble);
+    .appendTo(newMessageBubble);
 
-  $(".ChatContent").append(newChatBubble);
+  $(".ChatContent").append(newMessageBubble);
+  updateScroll();
 }
 
-sendAutoMessage(autoName, greetingMessage);
+sendMessage(autoName, greetingMessage, colorBubbleAuto);
+
+$(".FormMessage").on("submit", function(event) {
+  event.preventDefault();
+  let messageBubble = $(".Message").val();
+  sendMessage(userName, messageBubble);
+  setTimeout(autoReply, 800);
+});
+
+let messagesIndex = 0;
+
+//this functions returns the message in the messages array above, and it updates the array index every time the function is called
+function autoReply() {
+  if (messagesIndex === messages.length - 1) {
+    sendMessage(autoName, messages[messagesIndex], colorBubbleAuto);
+    messagesIndex = 0;
+  } else {
+    sendMessage(autoName, messages[messagesIndex], colorBubbleAuto);
+    messagesIndex += 1;
+  }
+}
+
+//I found help here https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
+function updateScroll() {
+  const scrollPosition = $(".ChatContent")[0];
+  scrollPosition.scrollTop = scrollPosition.scrollHeight;
+}
 
 /*
 I found the solution for getting a small datetime for the exercise here
@@ -48,20 +73,20 @@ it could have been easily resolved with Date.toString(); but it was too long
 to be displayed inside the chat bubble
 */
 function currentDatetime() {
-  const date = new Date();
-  const aaaa = date.getUTCFullYear();
-  const gg = date.getUTCDate();
-  const mm = date.getUTCMonth() + 1;
+  let date = new Date();
+  let aaaa = date.getUTCFullYear();
+  let gg = date.getUTCDate();
+  let mm = date.getUTCMonth() + 1;
 
   if (gg < 10) gg = "0" + gg;
 
   if (mm < 10) mm = "0" + mm;
 
-  const cur_day = aaaa + "-" + mm + "-" + gg;
+  let cur_day = aaaa + "-" + mm + "-" + gg;
 
-  const hours = date.getUTCHours() + 1;
-  const minutes = date.getUTCMinutes();
-  const seconds = date.getUTCSeconds();
+  let hours = date.getUTCHours() + 1;
+  let minutes = date.getUTCMinutes();
+  let seconds = date.getUTCSeconds();
 
   if (hours < 10) hours = "0" + hours;
 
