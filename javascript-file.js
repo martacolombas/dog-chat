@@ -1,19 +1,11 @@
-var $paragraphs = $('p');
-        $paragraphs.each(function(index, element) {
-        var elementJQuery = $(this);
-        var eachP = elementJQuery.text();
-        var transformedData = toPigLatin(eachP);
-        elementJQuery.text(transformedData)
-        });
+// the messages of the computer need to be pre-defined
 
-        
-        $("#quiz-form").on("submit", function(event) {
-            event.preventDefault();
-            var $answer = $("#quiz-answer"); 
-            var answer = $answer.val();
-            console.log(answer);
-            if (answer === "crocodile") {
-                $("#result").text("Woweeee! You got it! WOOO PARTY!");
-            } else {
-                $("#result").text("Try again!");
-            }w
+const autoMessages = [
+  "Q: What do you get when you cross a sheepdog with a rose? A: A collie-flower!",
+  "I have no shame, I jumped out of the car window and got into the next car because the person was eating KFC chicken",
+  "what are the cute things I could do for my human?",
+  "I ate my human's homework",
+  "I want to be a spokesdog"
+];
+
+console.log(autoMessages);
