@@ -1,0 +1,42 @@
+body {
+  font-family: "Verdana", "Times", serif;
+  display: flex;
+}
+
+.SideBar {
+  background-color: #f5f5dc;
+  height: 100%;
+  height: 100vh;
+  width: 25%;
+}
+
+.Main {
+  background: #f5f5dc url("./images/main-background.jpg") repeat;
+  height: 100vh;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.NavBar {
+  background-color: rgb(204, 203, 203);
+  height: 15vh;
+}
+
+.JustifiedContent {
+    /* flex direction indicates the main axis in which the children are goin to be aligned inside the parent  */
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  /* justify-content indicates where the children are going to be justified inside this parent 
+  -- justify-content is an attr inside a parent html text-align: 
+  it affects the main axis indicated in flex-direction*/
+  justify-content: center;
+  align-items: center;
+}
+
+.ChatContent {
+  background-color: #f8f9fa;
+  width: 95%;
+  height: 65%;
+  }
