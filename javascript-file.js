@@ -12,7 +12,6 @@ const messages = [
 //these are the variables used in the global scope
 let userName = "Bruce";
 let autoName = "Cynthia";
-let datetime = currentDatetime();
 let colorBubbleAuto = "rgb(218, 218, 248)";
 
 /*
@@ -39,7 +38,7 @@ function sendMessage(username, messageText, colorbubble) {
     .appendTo(newMessageBubble);
   $("<span>")
     .addClass("datetime")
-    .text(datetime)
+    .text(datetime())
     .appendTo(newMessageBubble);
 
   $(".ChatContent").append(newMessageBubble);
@@ -93,7 +92,6 @@ also I found out that default behavior of a textArea is to "write" in it
 so we call preventDefault inside the if(){} statement because we want to prevent 
 the enter to be written down in the text area
 */
-
 $(".Message").on("keydown", function(event) {
   if (event.which === 13) {
     event.preventDefault();
@@ -122,7 +120,7 @@ https://gist.github.com/MythRen/c4921735812dd2c0217a
 it could have been easily resolved with Date.toString(); but it was too long
 to be displayed inside the chat bubble
 */
-function currentDatetime() {
+function datetime() {
   let date = new Date();
   let aaaa = date.getUTCFullYear();
   let gg = date.getUTCDate();
