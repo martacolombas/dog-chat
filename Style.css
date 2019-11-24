@@ -1,3 +1,7 @@
+/* I used this additional documentation:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+https://htmlcheatsheet.com/css/ */
+
 body {
   font-family: "Verdana", "Times", serif;
   display: flex;

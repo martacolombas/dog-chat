@@ -1,6 +1,6 @@
 // the messages of the computer need to be pre-defined
 
-const greetingMessage = "Hi Bruce 🐶, I'm happy to see you in the chat";
+const greetingMessage = "Hi Bruce! I'm happy to see you in the chat";
 const messages = [
   "Q: What do you get when you cross a sheepdog with a rose? A: A collie-flower!",
   "I have no shame, I jumped out of the car window and got into the next car because the person was eating KFC chicken",
