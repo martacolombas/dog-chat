@@ -40,11 +40,23 @@ function sendMessage(username, messageText, colorbubble) {
 
 sendMessage(autoName, greetingMessage, colorBubbleAuto);
 
-$(".FormMessage").on("submit", function(event) {
-  event.preventDefault();
+function grabTextInArea() {
   let messageBubble = $(".Message").val();
   sendMessage(userName, messageBubble);
   setTimeout(autoReply, 800);
+  $(".Message").val("");
+}
+
+$(".FormMessage").on("submit", function(event) {
+  event.preventDefault();
+  grabTextInArea();
+});
+
+$(".Message").on("keydown", function(event) {
+  if (event.which === 13) {
+    event.preventDefault();
+    grabTextInArea();
+  }
 });
 
 let messagesIndex = 0;

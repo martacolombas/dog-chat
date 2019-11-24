@@ -21,7 +21,7 @@ body {
 }
 
 .NavBar {
-  background-color: rgb(204, 203, 203);
+  background-color: #ebebeb;
   height: 13vh;
   display: flex;
   flex-direction: row;
