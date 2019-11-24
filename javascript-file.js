@@ -9,13 +9,21 @@ const messages = [
   "I want to be a spokesdog"
 ];
 
+//these are the variables used in the global scope
 let userName = "Bruce";
 let autoName = "Cynthia";
 let datetime = currentDatetime();
 let colorBubbleAuto = "rgb(218, 218, 248)";
 
-console.log(datetime);
-
+/*
+this function allows us to send the message in the bubble
+1. it creates a new div that will be placed in the html document
+2. adds the class to have the same look and feel as the automated messages, except color
+3. it creates a 3 new spans, with classes and the params passed in the function
+    and appends it to the div created in 1.
+4. once everything is wrapped in the div, it's appended to  ChatContent 
+5. updates scroll by calling the function
+*/
 function sendMessage(username, messageText, colorbubble) {
   let newMessageBubble = $("<div>")
     .addClass("ChatBubble")
@@ -38,8 +46,29 @@ function sendMessage(username, messageText, colorbubble) {
   updateScroll();
 }
 
+/*
+I found help here https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
+I understand thay it declares a new variable and equals it to the dom node needed (in our case Chat Content)
+the scrollTop and scrollHeight properties are equaled in the next step
+*/
+function updateScroll() {
+  const scrollPosition = $(".ChatContent")[0];
+  scrollPosition.scrollTop = scrollPosition.scrollHeight;
+}
+
+//we send a welcoming message!
 sendMessage(autoName, greetingMessage, colorBubbleAuto);
 
+/*
+this function will be calle in the two next steps.
+1. we create a new variable called messageBubble that takes the value of the jQuery object
+2. we call the function sendMessage explained above
+3. we also want to delay autoReply (since it looked like Cynthia could read our minds!)
+   found help here https://www.w3schools.com/jsref/met_win_settimeout.asp
+4. we make the textarea clean again
+Note for assignment: I didn't think about creating this function from the start
+When I saw I needed to reuse this code in two other places, I decided to wrap it up here 
+so it can be reused whenever we need */
 function grabTextInArea() {
   let messageBubble = $(".Message").val();
   sendMessage(userName, messageBubble);
@@ -47,10 +76,23 @@ function grabTextInArea() {
   $(".Message").val("");
 }
 
+/*
+on click we want to send the message in the text area
+we want to prevent the default behavior of the form (reload)
+call aforementioned function */
+
 $(".FormMessage").on("submit", function(event) {
   event.preventDefault();
   grabTextInArea();
 });
+
+/*
+I thought it would be nice to press enter and send the message :)
+I found some help here https://api.jquery.com/keydown/
+also I found out that default behavior of a textArea is to "write" in it
+so we call preventDefault inside the if(){} statement because we want to prevent 
+the enter to be written down in the text area
+*/
 
 $(".Message").on("keydown", function(event) {
   if (event.which === 13) {
@@ -59,9 +101,11 @@ $(".Message").on("keydown", function(event) {
   }
 });
 
+/*this functions returns the message in the messages array above, 
+and it updates the array index every time the function is called*/
+
 let messagesIndex = 0;
 
-//this functions returns the message in the messages array above, and it updates the array index every time the function is called
 function autoReply() {
   if (messagesIndex === messages.length - 1) {
     sendMessage(autoName, messages[messagesIndex], colorBubbleAuto);
@@ -70,12 +114,6 @@ function autoReply() {
     sendMessage(autoName, messages[messagesIndex], colorBubbleAuto);
     messagesIndex += 1;
   }
-}
-
-//I found help here https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
-function updateScroll() {
-  const scrollPosition = $(".ChatContent")[0];
-  scrollPosition.scrollTop = scrollPosition.scrollHeight;
 }
 
 /*
