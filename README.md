@@ -1,2 +1,2 @@
 # dog-chat
-Coding assignment for Codeworks
+Coding assignment for Codeworks.
